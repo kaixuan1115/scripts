@@ -1,0 +1,5 @@
+title Ubuntu 14.04 LTS
+find --set-root /ubuntu/vmlinuz.efi
+kernel /ubuntu/vmlinuz.efi boot=casper iso-scan/filename=/ubuntu/ubuntu.iso
+initrd /ubuntu/initrd.lz
+boot

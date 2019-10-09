@@ -1,0 +1,11 @@
+[Unit]
+Description=V2Ray
+After=network.target
+
+[Service]
+WorkingDirectory=/root/v2ray-v3.50-linux-64/
+ExecStart=/root/v2ray-v3.50-linux-64/v2ray -config config.json
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,65 @@
+{
+    "log": {
+        "access": "",
+        "error": "",
+        "loglevel": "warning"
+    },
+    "inbound": {
+        "protocol": "vmess",
+        "port": 80,
+        "settings": {
+            "clients": [
+                {
+                    "id": "91cb66ba-a373-43a0-8169-33d4eeaeb857",
+                    "alterId": 64
+                }
+            ]
+        },
+        "streamSettings": {
+            "network": "ws"
+        }
+    },
+    "inboundDetour": [
+        {
+            "port": 12345,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "91cb66ba-a373-43a0-8169-33d4eeaeb857",
+                        "level": 1,
+                        "alterId": 100
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "tcp"
+            }
+        },
+        {
+            "port": 12346,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "91cb66ba-a373-43a0-8169-33d4eeaeb857",
+                        "level": 1,
+                        "alterId": 100
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "kcp",
+                "kcpSettings": {
+                    "header": {
+                        "type": "wechat-video"
+                    }
+                }
+            }
+        }
+    ],
+    "outbound": {
+        "protocol": "freedom",
+        "settings": {}
+    }
+}

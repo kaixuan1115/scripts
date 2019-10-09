@@ -1,0 +1,10 @@
+[Unit]
+Description=Rinetd for OpenVZ
+After=network.target
+
+[Service]
+ExecStart=/root/rinetd/rinetd -f -c /root/rinetd/rinetd.conf raw venet0:0
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

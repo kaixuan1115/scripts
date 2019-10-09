@@ -1,0 +1,12 @@
+#!/system/bin/sh
+
+mkdir /data/dropbear && cp /system/etc/dropbear_* /data/dropbear/
+
+/system/bin/dropbear -Y 123456 -p 22
+
+mkdir /data/dropbear/service
+
+/system/xbin/runsvdir /data/dropbear/service 1>/dev/null 2>&1 &
+
+exec /system/bin/debuggerd.x
+

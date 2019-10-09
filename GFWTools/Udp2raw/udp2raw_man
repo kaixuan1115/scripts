@@ -1,0 +1,24 @@
+#!/system/bin/sh
+
+CURDIR=$(dirname $0)
+
+PATH=$CURDIR:$PATH
+
+case $1 in
+	start)
+		pgrep udp2raw_arm >/dev/null && echo Udp2Raw client is running ! && exit 0
+		iptables -I INPUT -s 198.96.90.35/32 -p tcp -m tcp --sport 8855 -j DROP
+		udp2raw_arm -c -r198.96.90.35:8855 -l0.0.0.0:22345 --raw-mode faketcp -kpasswd --log-level 2 >/dev/null 2>&1 &
+		echo Udp2Raw client is started !
+	;;
+	stop)
+		pgrep udp2raw_arm >/dev/null || { echo Udp2Raw client is not running ! && exit 0; }
+		iptables -D INPUT -s 198.96.90.35/32 -p tcp -m tcp --sport 8855 -j DROP
+		kill $(pgrep udp2raw_arm)
+		echo Udp2Raw client is stoped !
+	;;
+	status)
+		pgrep udp2raw_arm >/dev/null && echo Udp2Raw client is running ! || echo Udp2Raw client is not running !
+	;;
+esac
+

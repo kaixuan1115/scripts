@@ -1,0 +1,16 @@
+#!/system/bin/sh
+
+./portal
+
+pid=
+trap '[[ $pid ]] && kill $pid; ./portal -s; exit 0' SIGINT SIGTERM
+while :
+do
+        sleep 60 & pid=$!
+        wait
+        pid=
+
+        busybox ps -ef | grep ETMDaemon | grep -v grep > /dev/null
+        if [ $? -ne 0 ]; then ./portal; fi
+done
+

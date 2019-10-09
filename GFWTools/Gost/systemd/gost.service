@@ -1,0 +1,12 @@
+[Unit]
+Description=Gost
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/gost
+ExecStart=/opt/gost/gost -L=ss+kcp://chacha20:ss123456@:22345?c=kcp.json
+StandardError=null
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

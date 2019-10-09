@@ -1,0 +1,7 @@
+:81 {
+    root /data/dropbear/Xware/www
+    gzip
+    proxy /api 127.0.0.1:9000 {
+        without /api
+    }
+}

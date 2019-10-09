@@ -1,0 +1,14 @@
+[Unit]
+Description=SVN Server
+After=network.target
+
+[Service]
+Type=forking
+WorkingDirectory=/data
+ExecStart=/usr/bin/svnserve -d -r /data/svnrepos --pid-file /var/run/svnd.pid
+PIDFile=/var/run/svnd.pid
+ExecStop=/bin/kill -s TERM $MAINPID
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

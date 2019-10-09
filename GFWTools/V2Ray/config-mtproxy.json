@@ -1,0 +1,99 @@
+{
+  "log": {
+    "access": "",
+    "error": "",
+    "loglevel": "warning"
+  },
+  "inbound": {
+    "protocol": "vmess",
+    "port": 80,
+    "settings": {
+      "clients": [
+        {
+          "id": "91cb66ba-a373-43a0-8169-33d4eeaeb857",
+          "alterId": 64
+        }
+      ]
+    },
+    "streamSettings": {
+      "network": "ws"
+    }
+  },
+  "inboundDetour": [
+    {
+      "port": 12345,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "91cb66ba-a373-43a0-8169-33d4eeaeb857",
+            "level": 1,
+            "alterId": 100
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp"
+      }
+    },
+    {
+      "port": 12346,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "91cb66ba-a373-43a0-8169-33d4eeaeb857",
+            "level": 1,
+            "alterId": 100
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "kcp",
+        "kcpSettings": {
+          "header": {
+            "type": "wechat-video"
+          }
+        }
+      }
+    },
+    {
+      "tag": "tg-in",
+      "port": 5678,
+      "protocol": "mtproto",
+      "settings": {
+        "users": [
+          {
+            "secret": "dd7693ba1b07013b32f25b71ec01876c"
+          }
+        ]
+      }
+    }
+  ],
+  "outbound": {
+    "protocol": "freedom",
+    "settings": {}
+  },
+  "outboundDetour": [
+    {
+      "tag": "tg-out",
+      "protocol": "mtproto",
+      "settings": {}
+    }
+  ],
+  "routing": {
+    "strategy": "rules",
+    "settings": {
+      "rules": [
+        {
+          "type": "field",
+          "inboundTag": [
+            "tg-in"
+          ],
+          "outboundTag": "tg-out",
+          "settings": {}
+        }
+      ]
+    }
+  }
+}

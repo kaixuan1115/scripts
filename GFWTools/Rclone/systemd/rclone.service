@@ -1,0 +1,10 @@
+[Unit]
+Description=rclone 
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/rclone --config /root/.config/rclone/rclone.conf mount pcloud: /root/pcloud
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

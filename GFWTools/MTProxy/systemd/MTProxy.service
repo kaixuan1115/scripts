@@ -1,0 +1,12 @@
+[Unit]
+Description=MTProxy
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/MTProxy
+ExecStart=/opt/MTProxy/mtproto-proxy -u nobody -p 8888 -H 5678 -S dd7693ba1b07013b32f25b71ec01876c --aes-pwd proxy-secret proxy-multi.conf -M 1
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
