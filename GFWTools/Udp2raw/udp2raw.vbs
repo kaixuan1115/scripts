@@ -6,6 +6,7 @@ Class Application
 	Private SA
 	Private Cimv2
 	Private CommandLine
+	Private RetryCount
 	
 	Private Sub Class_Initialize
 	Set WS = CreateObject("WScript.Shell")
@@ -13,6 +14,7 @@ Class Application
 	Set SA = CreateObject("Shell.Application")
 	Set Cimv2 = GetObject("winmgmts:\\.\root\cimv2")
 	CommandLine = "udp2raw_mp_nolibnet.exe -c -r"& Host &":8855 -l0.0.0.0:22345 --raw-mode faketcp -kpasswd --log-level 3"
+	RetryCount = 15
 	End Sub
 	
 	Private Sub Class_Terminate
@@ -59,8 +61,9 @@ Class Application
 		WScript.Sleep 200
 	Loop
 	fsm.Close
-	If InStr(UCase(strLine), "FATAL") > 0 Then
-		WScript.Sleep 1000: RunCommand
+	If InStr(UCase(strLine), "FATAL") > 0 And RetryCount > 0 Then
+		RetryCount = RetryCount - 1
+		WScript.Sleep 3000: RunCommand
 	End If
 	End Sub
 	
