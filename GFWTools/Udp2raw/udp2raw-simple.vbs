@@ -33,8 +33,8 @@ Class Application
 	
 	Public Sub AddFirewall
 	WS.Run "netsh advfirewall firewall delete rule name=udp2raw-simple", 0, True
-	WS.Run "netsh advfirewall firewall add rule name=udp2raw protocol=TCP dir=in remoteip="& Host &"/32 remoteport=8856 action=block", 0, True
-	WS.Run "netsh advfirewall firewall add rule name=udp2raw protocol=TCP dir=out remoteip="& Host &"/32 remoteport=8856 action=block", 0, True
+	WS.Run "netsh advfirewall firewall add rule name=udp2raw-simple protocol=TCP dir=in remoteip="& Host &"/32 remoteport=8856 action=block", 0, True
+	WS.Run "netsh advfirewall firewall add rule name=udp2raw-simple protocol=TCP dir=out remoteip="& Host &"/32 remoteport=8856 action=block", 0, True
 	End Sub
 	
 	Public Sub CheckRunning
@@ -78,7 +78,7 @@ End Class
 
 Set App = new Application
 App.HideExecute
-App.AddFirewall
 App.CheckRunning
+App.AddFirewall
 App.RunCommand
 

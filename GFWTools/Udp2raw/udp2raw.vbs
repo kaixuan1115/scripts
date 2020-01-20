@@ -78,7 +78,7 @@ End Class
 
 Set App = new Application
 App.HideExecute
-App.AddFirewall
 App.CheckRunning
+App.AddFirewall
 App.RunCommand
 
