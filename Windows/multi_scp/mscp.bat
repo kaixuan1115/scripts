@@ -12,7 +12,7 @@ goto :getParams
 
 :main
 set "servers[0]=ubuntu@118.24.141.52 123456"
-set "servers[1]=ubuntu@118.24.141.52 123456"
+set "servers[1]=ubuntu@118.24.141.53 123456"
 
 for /l %%i in (0 1 20) do (
 	if not defined servers[%%i] goto :EOF
