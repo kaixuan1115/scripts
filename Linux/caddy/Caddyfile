@@ -1,0 +1,59 @@
+http://g1.17letui.com https://g1.17letui.com {
+    tls ./full_chain.pem ./private.key
+    proxy / http://h5.17letui.com {
+        websocket
+	}
+}
+https://g1.17letui.com:4433 {
+    tls ./full_chain.pem ./private.key
+    root /home/ubuntu/www
+    fastcgi / 127.0.0.1:9000 php
+}
+g1.17letui.com:6110 {
+    tls ./full_chain.pem ./private.key
+    proxy / https://server4.17letui.com:6110 {
+        websocket
+	}
+}
+g1.17letui.com:6200 {
+    tls ./full_chain.pem ./private.key
+    proxy / https://server4.17letui.com:6200 {
+        websocket
+	}
+}
+g1.17letui.com:6201 {
+    tls ./full_chain.pem ./private.key
+    proxy / https://server4.17letui.com:6201 {
+        websocket
+	}
+}
+g1.17letui.com:6202 {
+    tls ./full_chain.pem ./private.key
+    proxy / https://server4.17letui.com:6202 {
+        websocket
+	}
+}
+https://g1.17letui.com:3005 {
+    tls ./full_chain.pem ./private.key
+    proxy / https://zhongzhuan.17letui.com:3005 {
+        websocket
+	}
+}
+g1.17letui.com:5110 {
+    tls ./full_chain.pem ./private.key
+    proxy / https://zhongzhuan.17letui.com:5110 {
+        websocket
+	}
+}
+g1.17letui.com:5200 {
+    tls ./full_chain.pem ./private.key
+    proxy / https://zhongzhuan.17letui.com:5200 {
+        websocket
+	}
+}
+g1.17letui.com:5201 {
+    tls ./full_chain.pem ./private.key
+    proxy / https://zhongzhuan.17letui.com:5201 {
+        websocket
+	}
+}
