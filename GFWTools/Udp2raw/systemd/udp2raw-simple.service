@@ -3,7 +3,7 @@ Description=Udp2Raw-Simple
 After=network.target
 
 [Service]
-ExecStart=/opt/udp2raw/udp2raw_amd64 -s -l0.0.0.0:8856 -r127.0.0.1:22345 -k "passwd" --raw-mode faketcp -a --log-level 3 --force-sock-buf 4096 --cipher-mode xor --auth-mode simple
+ExecStart=/opt/udp2raw/udp2raw_amd64_hw_aes -s -l0.0.0.0:8856 -r127.0.0.1:22345 -k "passwd" --raw-mode faketcp -a --log-level 3 --sock-buf 4096 --force-sock-buf --cipher-mode xor --auth-mode simple
 Restart=always
 
 [Install]
