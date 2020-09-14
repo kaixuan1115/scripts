@@ -1,4 +1,4 @@
-Const Title = "Udp2Raw", errorLog = "udp2raw.log", Host = "202.181.104.225"
+Const Title = "Udp2Raw", errorLog = "udp2raw-simple.log", Host = "202.181.104.225"
 
 Class Application
 	Private WS
