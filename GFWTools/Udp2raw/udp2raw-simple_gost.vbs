@@ -34,13 +34,13 @@ Class App_udp2raw
 	Public Function CheckRunning
 	Set Processes = Cimv2.ExecQuery("Select ProcessId From Win32_Process Where CommandLine="""& CommandLine &"""")
 	Result = Confirm(Processes.Count > 0)
+	CheckRunning = True
 	If Result = vbNo Then
 		CheckRunning =  False
 	Elseif Processes.Count > 0 Then
 		Running = True
 		For Each Process in Processes: Process.Terminate 0: Next
 	End If
-	CheckRunning = True
 	End Function
 	
 	Public Sub RunCommand
