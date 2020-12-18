@@ -13,7 +13,7 @@ Class Application
 	Set SF = CreateObject("Scripting.FileSystemObject")
 	Set SA = CreateObject("Shell.Application")
 	Set Cimv2 = GetObject("winmgmts:\\.\root\cimv2")
-	CommandLine = "udp2raw_mp_nolibnet.exe -c -r"& Host &":8855 -l0.0.0.0:22345 --raw-mode faketcp -kpasswd --log-level 3 --sock-buf 4096"
+	CommandLine = "udp2raw_mp.exe -c -r"& Host &":8855 -l0.0.0.0:22345 --raw-mode faketcp -kpasswd --log-level 3 --sock-buf 4096 --fix-gro"
 	RetryCount = 15
 	End Sub
 	

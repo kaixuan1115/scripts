@@ -20,7 +20,7 @@ Class App_udp2raw
 	Title = "Udp2Raw"
 	Host = "202.181.104.225"
 	errorLog = "udp2raw-simple.log"
-	CommandLine = "udp2raw_mp.exe -c -r"& Host &":8856 -l127.0.0.1:22345 --raw-mode faketcp -kpasswd --log-level 3 --sock-buf 4096 --cipher-mode xor --auth-mode simple"
+	CommandLine = "udp2raw_mp.exe -c -r"& Host &":8856 -l127.0.0.1:22345 --raw-mode faketcp -kpasswd --log-level 3 --sock-buf 4096 --cipher-mode xor --auth-mode simple --fix-gro"
 	RetryCount = 10
 	Running = False
 	End Sub
