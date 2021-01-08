@@ -9,7 +9,7 @@ case $1 in
 		pgrep udp2raw_arm >/dev/null && echo Udp2Raw client is running ! && exit 0
 		iptables -D INPUT -s ${IP}/32 -p tcp -m tcp --sport ${PORT} -j DROP
 		iptables -I INPUT -s ${IP}/32 -p tcp -m tcp --sport ${PORT} -j DROP
-		udp2raw_arm -c -r${IP}:${PORT} -l0.0.0.0:22345 --raw-mode faketcp -kpasswd --log-level 3 --sock-buf 4096 --force-sock-buf --cipher-mode xor --auth-mode simple >/dev/null 2>&1 &
+		udp2raw_arm -c -r${IP}:${PORT} -l0.0.0.0:22345 --raw-mode faketcp -kpasswd --log-level 3 --sock-buf 4096 --force-sock-buf --cipher-mode xor --auth-mode simple --fix-gro >/dev/null 2>&1 &
 		echo Udp2Raw client is started !
 	;;
 	stop)
