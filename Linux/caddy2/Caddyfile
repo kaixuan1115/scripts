@@ -1,0 +1,25 @@
+{
+  admin off
+}
+qbit.go-back.cf:80 {
+  reverse_proxy 127.0.0.1:8080
+}
+
+shenkey.go-back.cf:80 {
+  reverse_proxy 127.0.0.1:8081
+}
+
+6pan.go-back.cf:80 {
+  reverse_proxy 127.0.0.1:8082
+}
+
+sync.go-back.cf:80 {
+  reverse_proxy 127.0.0.1:8888
+}
+
+file.go-back.cf:80 {
+  reverse_proxy 127.0.0.1:8083
+}
+vless-cf.go-back.cf:80 {
+  reverse_proxy 127.0.0.1:8084
+}

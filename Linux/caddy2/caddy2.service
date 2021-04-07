@@ -1,0 +1,12 @@
+[Unit]
+Description=Caddy2
+After=network.target
+
+[Service]
+Environment=HOME=/root/caddy2/home XDG_CONFIG_HOME=/root/caddy2/home
+WorkingDirectory=/root/caddy2
+ExecStart=/root/caddy2/caddy run --config Caddyfile
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
