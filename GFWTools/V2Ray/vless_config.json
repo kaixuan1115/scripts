@@ -1,0 +1,86 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "port": 8090,
+      "protocol": "http",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      }
+    },
+    {
+      "port": 8091,
+      "protocol": "socks",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      }
+    }
+  ],
+  "outbounds": [
+    {
+    "protocol": "vless",
+    "settings": {
+      "vnext": [
+        {
+          "address": "102.223.222.223", // 换成你的域名或服务器 IP（发起请求时无需解析域名了）
+          "port": 3333,
+          "users": [
+            {
+              "id": "91cb66ba-a373-43a0-8169-33d4eeaeb857", // 填写你的 UUID
+              "encryption": "none"
+            }
+          ]
+        }
+      ]
+    },
+    "streamSettings": {
+      "network": "ws",
+      "security": "tls",
+      "tlsSettings": {
+        "allowInsecure": true,
+        "serverName": "www.go-back.tk" // 换成你的域名
+      },
+      "wsSettings": {
+        "headers": {
+          "Host": "www.go-back.tk"
+        }
+      }
+    }
+    },
+    {
+      "protocol": "freedom",
+      "settings": {},
+      "tag": "direct" //如果要使用路由，这个 tag 是一定要有的，在这里 direct 就是 freedom 的一个标号，在路由中说 direct V2Ray 就知道是这里的 freedom 了
+    }
+  ],
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "rules": [
+      {
+        "type": "field",
+        "outboundTag": "direct",
+        "domain": ["geosite:cn"] // 中国大陆主流网站的域名
+      },
+      {
+        "type": "field",
+        "outboundTag": "direct",
+        "ip": [
+          "geoip:cn", // 中国大陆的 IP
+          "geoip:private" // 私有地址 IP，如路由器等
+        ]
+      }
+    ]
+  }
+}
