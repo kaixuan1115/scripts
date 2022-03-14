@@ -1,0 +1,72 @@
+{
+  "log": {
+    "loglevel": "warning",
+    "access": "",
+    "error": ""
+  },
+  "inbounds": [
+    {
+      "port": 8080,
+      "protocol": "http",
+      "sniffing": {
+        "enabled": false,
+        "destOverride": ["http", "tls"]
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      }
+    },
+    {
+      "port": 8081,
+      "protocol": "socks",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "socks",
+      "settings": {
+        "servers": [
+          {
+            "address": "127.0.0.1",
+            "port": 1080
+          }
+        ]
+      },
+      "tag": "proxy"
+    },
+    {
+      "protocol": "freedom",
+      "settings": {},
+      "tag": "direct" //如果要使用路由，这个 tag 是一定要有的，在这里 direct 就是 freedom 的一个标号，在路由中说 direct V2Ray 就知道是这里的 freedom 了
+    }    
+  ],
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "rules": [
+      {
+        "type": "field",
+        "outboundTag": "proxy",
+        "domain": ["geosite:gfw", "geosite:greatfire", "baozimh.com"]
+      },
+      {
+        "type": "field",
+        "outboundTag": "proxy",
+        "ip": ["geoip:telegram"]
+      },
+      {
+        "type": "field",
+        "outboundTag": "direct",
+        "network": "tcp,udp"
+      }
+    ]
+  }
+}
