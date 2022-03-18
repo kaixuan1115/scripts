@@ -21,7 +21,7 @@
       "port": 8081,
       "protocol": "socks",
       "sniffing": {
-        "enabled": true,
+        "enabled": false,
         "destOverride": ["http", "tls"]
       },
       "settings": {
