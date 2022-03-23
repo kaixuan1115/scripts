@@ -1,6 +1,6 @@
 Set SA = CreateObject("Shell.Application")
 If WScript.Arguments.Count <= 0 Then
-	SA.ShellExecute "cscript.exe", """"& WScript.ScriptFullName &""" 1", Null, "runas", 0
+	SA.ShellExecute "cscript.exe", """"& WScript.ScriptFullName &""" udp2raw", Null, "runas", 0
 	WScript.Quit
 End If
 
@@ -116,14 +116,14 @@ Class App_gost
 End Class
 
 
-If WScript.Arguments(0) = "1" Then
+If WScript.Arguments(0) = "udp2raw" Then
 	Set App = new App_udp2raw
 	Result = App.CheckRunning
-	SA.ShellExecute "cscript.exe", """"& WScript.ScriptFullName &""" 2", Null, "runas", 0
+	SA.ShellExecute "cscript.exe", """"& WScript.ScriptFullName &""" gost", Null, "runas", 0
 	If Not Result Or App.Running Then WScript.Quit: End If
 	App.AddFirewall
 	App.RunCommand
-Elseif WScript.Arguments(0) = "2" Then
+Elseif WScript.Arguments(0) = "gost" Then
 	Set App = new App_gost
 	App.CheckRunning
 	App.RunCommand
