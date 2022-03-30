@@ -55,7 +55,7 @@
       {
         "type": "field",
         "outboundTag": "proxy",
-        "domain": ["geosite:gfw", "geosite:greatfire", "baozimh.com"]
+        "domain": ["geosite:geolocation-!cn"]
       },
       {
         "type": "field",
