@@ -1,10 +1,10 @@
 [Unit]
-Description=Gost
+Description=Gost Service
 After=network.target
 
 [Service]
-WorkingDirectory=/opt/gost
-ExecStart=/opt/gost/gost -L=ss+kcp://chacha20:ss123456@:22345?c=kcp.json
+WorkingDirectory=/root/gfw_tools
+ExecStart=/root/gfw_tools/gost-linux-armv8 -C config.json
 StandardError=null
 Restart=always
 

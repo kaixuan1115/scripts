@@ -1,0 +1,18 @@
+{
+  "ServeNodes": [
+    ":1080"
+  ],
+  "ChainNodes": [
+    "ss+kcp://chacha20:ss123456@127.0.0.1:22345?c=kcp.json"
+  ],
+  "Routes": [
+    {
+      "ServeNodes": [
+        ":1081"
+      ],
+      "ChainNodes": [
+        "ss+mwss://chacha20:ss123456@102.223.74.222:2233"
+      ]
+    }
+  ]
+}
