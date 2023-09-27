@@ -47,11 +47,26 @@
       "protocol": "freedom",
       "settings": {},
       "tag": "direct" //如果要使用路由，这个 tag 是一定要有的，在这里 direct 就是 freedom 的一个标号，在路由中说 direct V2Ray 就知道是这里的 freedom 了
-    }    
+    },
+    {
+      "protocol": "blackhole",
+      "settings": {},
+      "tag": "reject"
+    }
   ],
   "routing": {
     "domainStrategy": "IPIfNonMatch",
     "rules": [
+      {
+        "type": "field",
+        "outboundTag": "reject",
+        "domain": ["geosite:category-ads-all"]
+      },
+      {
+        "type": "field",
+        "outboundTag": "direct",
+        "domain": ["regexp:^(dl-)|(vod).*\\.mypikpak\\.com$"]
+      },
       {
         "type": "field",
         "outboundTag": "proxy",
