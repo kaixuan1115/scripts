@@ -1,8 +1,10 @@
 [Unit]
-Description=V2Ray
+Description=V2Ray Client
 After=network.target
 
 [Service]
+CPUQuota=100%
+MemoryLimit=256M
 WorkingDirectory=/root/v2ray-v3.50-linux-64/
 ExecStart=/root/v2ray-v3.50-linux-64/v2ray -config config.json
 Restart=always
